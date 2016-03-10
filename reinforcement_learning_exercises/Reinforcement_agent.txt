@@ -1,1 +1,4 @@
 Gridworld reinforcement learning approach for Smartcab project
+
+- To implement an iterative update program for value estimation of current states we need to use two arrays; one to store old values and one for the newly calculated values(using the values from the old array)
+
