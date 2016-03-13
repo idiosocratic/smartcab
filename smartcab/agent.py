@@ -53,12 +53,26 @@ class LearningAgent(Agent):
           
         
         # TODO: Select action according to your policy
-        action = None
+        if state_count_dictionary[state_to_binary] == 0:
+          action = random.choice(['left','right','forward','None'])
+        else:
+          action_dict = state_action_dictionary[state_to_binary]
+          max_val = max(action_dict, key = lambda x: action_dict[x])
+          
+          possible_actions = []
+          
+          for kee in action_dict:
+            if action_dict[kee] == max_val: 
+              possible_actions.append(kee)
+              
+          action = random.choice(possible_actions)    
 
         # Execute action and get reward
         reward = self.env.act(self, action)
 
         # TODO: Learn policy based on state, action, reward
+        
+        # need to update sad and scd
 
         print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
 
