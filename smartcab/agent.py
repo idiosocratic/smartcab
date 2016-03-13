@@ -33,7 +33,7 @@ class LearningAgent(Agent):
           state_to_binary += '10'
         elif self.next_waypoint == 'right':
           state_to_binary += '01'
-        elif self.next_waypoint == 'None':
+        elif self.next_waypoint == None:
           state_to_binary += '00'
           
         
@@ -54,7 +54,7 @@ class LearningAgent(Agent):
         
         # TODO: Select action according to your policy
         if state_count_dictionary[state_to_binary] == 0:
-          action = random.choice(['left','right','forward','None'])
+          action = random.choice(['left','right','forward',None])
         else:
           action_dict = state_action_dictionary[state_to_binary]
           max_val = max(action_dict, key = lambda x: action_dict[x])
@@ -72,27 +72,29 @@ class LearningAgent(Agent):
 
         # TODO: Learn policy based on state, action, reward
         
-        # need to update sad and scd
+        state_count_dictionary[state_to_binary] += 1 
+        
+        state_action_dictionary[state_to_binary][action] += reward
 
         print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
 
 
-state_action_dictionary = {'11111':{'right':0,'left':0,'forward':0,'None':0}, '11110':{'right':0,'left':0,'forward':0,'None':0},
-                           '11100':{'right':0,'left':0,'forward':0,'None':0}, '10111':{'right':0,'left':0,'forward':0,'None':0},
-                           '10110':{'right':0,'left':0,'forward':0,'None':0}, '10100':{'right':0,'left':0,'forward':0,'None':0},
-                           '10011':{'right':0,'left':0,'forward':0,'None':0}, '10010':{'right':0,'left':0,'forward':0,'None':0},
-                           '10000':{'right':0,'left':0,'forward':0,'None':0}, '00011':{'right':0,'left':0,'forward':0,'None':0},
-                           '00010':{'right':0,'left':0,'forward':0,'None':0}, '00000':{'right':0,'left':0,'forward':0,'None':0},
-                           '00111':{'right':0,'left':0,'forward':0,'None':0}, '00110':{'right':0,'left':0,'forward':0,'None':0},
-                           '00100':{'right':0,'left':0,'forward':0,'None':0}, '01011':{'right':0,'left':0,'forward':0,'None':0},
-                           '01010':{'right':0,'left':0,'forward':0,'None':0}, '01000':{'right':0,'left':0,'forward':0,'None':0},
-                           '01111':{'right':0,'left':0,'forward':0,'None':0}, '01110':{'right':0,'left':0,'forward':0,'None':0},
-                           '01100':{'right':0,'left':0,'forward':0,'None':0}, '11011':{'right':0,'left':0,'forward':0,'None':0},
-                           '11010':{'right':0,'left':0,'forward':0,'None':0}, '11000':{'right':0,'left':0,'forward':0,'None':0},
-                           '11101':{'right':0,'left':0,'forward':0,'None':0}, '10101':{'right':0,'left':0,'forward':0,'None':0},
-                           '10001':{'right':0,'left':0,'forward':0,'None':0}, '00001':{'right':0,'left':0,'forward':0,'None':0},
-                           '00101':{'right':0,'left':0,'forward':0,'None':0}, '01101':{'right':0,'left':0,'forward':0,'None':0},
-                           '11001':{'right':0,'left':0,'forward':0,'None':0}, '01001':{'right':0,'left':0,'forward':0,'None':0}}
+state_action_dictionary = {'11111':{'right':0,'left':0,'forward':0,None:0}, '11110':{'right':0,'left':0,'forward':0,None:0},
+                           '11100':{'right':0,'left':0,'forward':0,None:0}, '10111':{'right':0,'left':0,'forward':0,None:0},
+                           '10110':{'right':0,'left':0,'forward':0,None:0}, '10100':{'right':0,'left':0,'forward':0,None:0},
+                           '10011':{'right':0,'left':0,'forward':0,None:0}, '10010':{'right':0,'left':0,'forward':0,None:0},
+                           '10000':{'right':0,'left':0,'forward':0,None:0}, '00011':{'right':0,'left':0,'forward':0,None:0},
+                           '00010':{'right':0,'left':0,'forward':0,None:0}, '00000':{'right':0,'left':0,'forward':0,None:0},
+                           '00111':{'right':0,'left':0,'forward':0,None:0}, '00110':{'right':0,'left':0,'forward':0,None:0},
+                           '00100':{'right':0,'left':0,'forward':0,None:0}, '01011':{'right':0,'left':0,'forward':0,None:0},
+                           '01010':{'right':0,'left':0,'forward':0,None:0}, '01000':{'right':0,'left':0,'forward':0,None:0},
+                           '01111':{'right':0,'left':0,'forward':0,None:0}, '01110':{'right':0,'left':0,'forward':0,None:0},
+                           '01100':{'right':0,'left':0,'forward':0,None:0}, '11011':{'right':0,'left':0,'forward':0,None:0},
+                           '11010':{'right':0,'left':0,'forward':0,None:0}, '11000':{'right':0,'left':0,'forward':0,None:0},
+                           '11101':{'right':0,'left':0,'forward':0,None:0}, '10101':{'right':0,'left':0,'forward':0,None:0},
+                           '10001':{'right':0,'left':0,'forward':0,None:0}, '00001':{'right':0,'left':0,'forward':0,None:0},
+                           '00101':{'right':0,'left':0,'forward':0,None:0}, '01101':{'right':0,'left':0,'forward':0,None:0},
+                           '11001':{'right':0,'left':0,'forward':0,None:0}, '01001':{'right':0,'left':0,'forward':0,None:0}}
                            
 state_count_dictionary = {'11111':0, '11110':0, '11101':0,
                           '11100':0, '10111':0, '10101':0,
