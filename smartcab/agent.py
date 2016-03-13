@@ -35,6 +35,14 @@ class LearningAgent(Agent):
         print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
 
 
+state_action_dictionary = {'11111':{'right':0,'left':0,'forward':0,'None':0}, '11110':{'right':0,'left':0,'forward':0,'None':0},
+                           '11100':{'right':0,'left':0,'forward':0,'None':0}, '10111':{'right':0,'left':0,'forward':0,'None':0},
+                           '10110':{'right':0,'left':0,'forward':0,'None':0}, '10100':{'right':0,'left':0,'forward':0,'None':0},
+                           '10011':{'right':0,'left':0,'forward':0,'None':0}, '10010':{'right':0,'left':0,'forward':0,'None':0},
+                           '10000':{'right':0,'left':0,'forward':0,'None':0}, '00011':{'right':0,'left':0,'forward':0,'None':0},
+                           '00010':{'right':0,'left':0,'forward':0,'None':0}, '00000':{'right':0,'left':0,'forward':0,'None':0}}
+
+
 def run():
     """Run the agent for a finite number of trials."""
 
