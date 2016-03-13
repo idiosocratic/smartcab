@@ -40,7 +40,26 @@ state_action_dictionary = {'11111':{'right':0,'left':0,'forward':0,'None':0}, '1
                            '10110':{'right':0,'left':0,'forward':0,'None':0}, '10100':{'right':0,'left':0,'forward':0,'None':0},
                            '10011':{'right':0,'left':0,'forward':0,'None':0}, '10010':{'right':0,'left':0,'forward':0,'None':0},
                            '10000':{'right':0,'left':0,'forward':0,'None':0}, '00011':{'right':0,'left':0,'forward':0,'None':0},
-                           '00010':{'right':0,'left':0,'forward':0,'None':0}, '00000':{'right':0,'left':0,'forward':0,'None':0}}
+                           '00010':{'right':0,'left':0,'forward':0,'None':0}, '00000':{'right':0,'left':0,'forward':0,'None':0},
+                           '00111':{'right':0,'left':0,'forward':0,'None':0}, '00110':{'right':0,'left':0,'forward':0,'None':0},
+                           '00100':{'right':0,'left':0,'forward':0,'None':0}, '01011':{'right':0,'left':0,'forward':0,'None':0},
+                           '01010':{'right':0,'left':0,'forward':0,'None':0}, '01000':{'right':0,'left':0,'forward':0,'None':0},
+                           '01111':{'right':0,'left':0,'forward':0,'None':0}, '01110':{'right':0,'left':0,'forward':0,'None':0},
+                           '01100':{'right':0,'left':0,'forward':0,'None':0}, '11011':{'right':0,'left':0,'forward':0,'None':0},
+                           '11010':{'right':0,'left':0,'forward':0,'None':0}, '11000':{'right':0,'left':0,'forward':0,'None':0}}
+                           
+state_count_dictionary = {'11111':0, '11110':0,
+                          '11100':0, '10111':0,
+                          '10110':0, '10100':0,
+                          '10011':0, '10010':0,
+                          '10000':0, '00011':0,
+                          '00010':0, '00000':0,
+                          '00111':0, '00110':0,
+                          '00100':0, '01011':0,
+                          '01010':0, '01000':0,
+                          '01111':0, '01110':0,
+                          '01100':0, '11011':0,
+                          '11010':0, '11000':0}                           
 
 
 def run():
