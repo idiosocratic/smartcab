@@ -4,6 +4,7 @@ from planner import RoutePlanner
 from simulator import Simulator
 import collections
 
+
 class LearningAgent(Agent):
     """An agent that learns to drive in the smartcab world."""
 
@@ -38,16 +39,16 @@ class LearningAgent(Agent):
           state_to_binary += '00'
           
         
-        if inputs.light == 'green':
+        if inputs['light'] == 'green':
           state_to_binary += '1'
-        elif inputs.light == 'red':
+        elif inputs['light'] == 'red':
           state_to_binary += '0'
           
-        if inputs.oncoming_now == 'left':
+        if inputs['oncoming'] == 'left':
           state_to_binary += '10'
-        elif inputs.left_now == 'forward':
+        elif inputs['left'] == 'forward':
           state_to_binary += '01'
-        elif inputs.oncoming_now == 'forward':
+        elif inputs['oncoming'] == 'forward':
           state_to_binary += '11'
         else:
           state_to_binary += '00'
@@ -58,16 +59,28 @@ class LearningAgent(Agent):
           action = random.choice(['left','right','forward',None])
         else:
           action_dict = state_action_dictionary[state_to_binary]
-          max_val = max(action_dict, key = lambda x: action_dict[x])
+          max_val = action_dict[max(action_dict, key = lambda x: action_dict[x])]
           
           possible_actions = []
           
           for kee in action_dict:
-            if action_dict[kee] == max_val: 
+            if action_dict[kee] >= 2: #max_val: 
               possible_actions.append(kee)
               
-          action = random.choice(possible_actions)    
-
+          if len(possible_actions) == 0:
+            action = random.choice(['left','right','forward',None])
+          else:       
+            action = random.choice(possible_actions)
+              
+          # action = random.choice(possible_actions) 
+          
+          print "next way_point: "
+          print self.next_waypoint
+          print "possible act:"
+          print possible_actions
+          print action   
+          
+          
         # Execute action and get reward
         reward = self.env.act(self, action)
 
@@ -76,9 +89,14 @@ class LearningAgent(Agent):
         state_count_dictionary[state_to_binary] += 1 
         
         state_action_dictionary[state_to_binary][action] += reward
+        
+        if state_count_dictionary[state_to_binary] %10 == 0:
+          print state_action_dictionary
+
 
         print "LearningAgent.update(): deadline = {}, inputs = {}, action = {}, reward = {}".format(deadline, inputs, action, reward)  # [debug]
 
+state_action_dictionary_counter = 1
 
 state_action_dictionary = {'11111':{'right':0,'left':0,'forward':0,None:0}, '11110':{'right':0,'left':0,'forward':0,None:0},
                            '11100':{'right':0,'left':0,'forward':0,None:0}, '10111':{'right':0,'left':0,'forward':0,None:0},
@@ -116,7 +134,7 @@ def run():
     # Set up environment and agent
     e = Environment()  # create environment (also adds some dummy traffic)
     a = e.create_agent(LearningAgent)  # create agent
-    e.set_primary_agent(a, enforce_deadline=False)  # set agent to track
+    e.set_primary_agent(a, enforce_deadline=True)  # set agent to track
 
     # Now simulate it
     sim = Simulator(e, update_delay=1.0)  # reduce update_delay to speed up simulation
